@@ -20,24 +20,16 @@
         {
             "id": "hh",
             "name": "Howling Hood",
-            "description": "",
-            "tagline": "",
-            "logo": ""
+            "description": "Howling Hood is a gaming channel dedicated to moving beyond the screen and building a real community. Rather than just focusing on high scores or highlights, the mission is to cultivate genuine connections and foster a welcoming space for friendly, authentic dialogue with the audience. For Howling Hood, every stream and post is an opportunity to turn viewers into friends and a fanbase into a family.",
+            "tagline": "Keep howling, be good.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Howling%20Hood/logo.png"
         },
         {
             "id": "ss",
             "name": "Simply Saee",
-            "description": "",
-            "tagline": "",
-            "logo": ""
-        },
-        {
-            "id": "saeepaak",
-            "name": "Saeepaak",
-            "tagline": "",
-            "description": "",
-            "logo": "",
-            "parent": "ss"
+            "description": "A female-led gaming channel focused on warmth, relaxation, and community. If you’re looking for a place to decompress and connect with kind-hearted people, head here and you’ve found your home.",
+            "tagline": "Simply Saee vibes.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Simply%20Saee/logo.png"
         }
     ]
 }
