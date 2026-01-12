@@ -1,0 +1,43 @@
+{
+    "children": [
+        {
+            "id": "optiyan",
+            "name": "Optiyan",
+            "tagline": "Refining the rhythm",
+            "description": "Optiyan is a Tech firm that focuses on operational harmony rather than just software sales. Positioning themselves as \"architects of efficiency\" they specialize in streamlining workflows and refining business processes to create a more seamless, productive workday.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Optiyan/logo.png",
+            "website": "https://optiyan.com"
+        },
+        {
+            "id": "zataarak",
+            "name": "Zataarak",
+            "description": "a streamlined, form-based UI for Docker Swarm management that transforms the complexity of container orchestration into an intuitive, accessible experience",
+            "tagline": "Essence of Orchestration",
+            "logo": "https://cdn.rrntwrk.com/Logos/Zataarak/favicon.png",
+            "website": "https://zataarak.com",
+            "parent": "optiyan"
+        },
+        {
+            "id": "hh",
+            "name": "Howling Hood",
+            "description": "",
+            "tagline": "",
+            "logo": ""
+        },
+        {
+            "id": "ss",
+            "name": "Simply Saee",
+            "description": "",
+            "tagline": "",
+            "logo": ""
+        },
+        {
+            "id": "saeepaak",
+            "name": "Saeepaak",
+            "tagline": "",
+            "description": "",
+            "logo": "",
+            "parent": "ss"
+        }
+    ]
+}

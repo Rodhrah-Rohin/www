@@ -1,0 +1,754 @@
+/* =================================================================
+   RODHRAH ROHIN - DESIGN SYSTEM
+   "Sthitah Pragati Pathi" - Steady on the path of progress
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. CSS VARIABLES - BRAND COLORS & TOKENS
+   ----------------------------------------------------------------- */
+:root {
+  /* Brand Colors */
+  --deep-root-teal: #0D2C2E;
+  --ascent-gold: #C5A059;
+  --pillar-white: #F4F1EA;
+  --earth-slate: #4A4A48;
+
+  /* Gradient Variations */
+  --gradient-vertical: linear-gradient(to bottom, var(--ascent-gold) 0%, var(--deep-root-teal) 100%);
+  --gradient-radial: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Typography Scale */
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2.5rem;
+  --font-size-2xl: 3.5rem;
+  --font-size-3xl: 4.5rem;
+
+  /* Effects */
+  --shadow-soft: 0 4px 24px rgba(13, 44, 46, 0.12);
+  --shadow-medium: 0 8px 40px rgba(13, 44, 46, 0.18);
+  --shadow-strong: 0 12px 60px rgba(13, 44, 46, 0.25);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -----------------------------------------------------------------
+   2. TYPOGRAPHY - BRAND FONTS
+   ----------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap');
+
+/* -----------------------------------------------------------------
+   3. RESET & BASE STYLES
+   ----------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--pillar-white);
+  color: var(--deep-root-teal);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* -----------------------------------------------------------------
+   4. TYPOGRAPHY SYSTEM
+   ----------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--deep-root-teal);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+.sanskrit {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.accent-text {
+  color: var(--ascent-gold);
+}
+
+/* -----------------------------------------------------------------
+   5. TREE RING PATTERN (Background Texture)
+   ----------------------------------------------------------------- */
+.tree-rings {
+  position: relative;
+  overflow: hidden;
+}
+
+.tree-rings::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background-image:
+    repeating-radial-gradient(circle at center,
+      transparent 0,
+      transparent 80px,
+      rgba(197, 160, 89, 0.03) 80px,
+      rgba(197, 160, 89, 0.03) 82px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tree-rings>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* -----------------------------------------------------------------
+   6. LAYOUT COMPONENTS
+   ----------------------------------------------------------------- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.section-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* -----------------------------------------------------------------
+   7. HERO SECTION
+   ----------------------------------------------------------------- */
+.hero {
+  background: linear-gradient(135deg, var(--deep-root-teal) 0%, #1a4a4e 100%);
+  color: var(--pillar-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-radial);
+  pointer-events: none;
+}
+
+.vertical-axis {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      var(--ascent-gold) 20%,
+      var(--ascent-gold) 80%,
+      transparent 100%);
+  transform: translateX(-50%);
+  animation: axis-pulse 3s ease-in-out infinite;
+}
+
+@keyframes axis-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scaleY(1.05);
+  }
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.logo-container {
+  margin-bottom: var(--spacing-lg);
+  animation: fade-slide-down 1s ease-out;
+}
+
+.brand-logo {
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.hero h1 {
+  color: var(--pillar-white);
+  margin-bottom: var(--spacing-sm);
+  animation: fade-slide-up 1s ease-out 0.3s both;
+}
+
+.tagline {
+  font-size: var(--font-size-lg);
+  color: var(--ascent-gold);
+  margin-bottom: var(--spacing-md);
+  animation: fade-slide-up 1s ease-out 0.6s both;
+}
+
+.hero-description {
+  font-size: var(--font-size-md);
+  max-width: 800px;
+  margin: 0 auto var(--spacing-lg);
+  opacity: 0.9;
+  animation: fade-in 1s ease-out 0.9s both;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.scroll-indicator svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--ascent-gold);
+  fill: none;
+  stroke-width: 2;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* Starfield effect for hero section */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--ascent-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.2;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 0 2px rgba(197, 160, 89, 0.3);
+  z-index: 1;
+}
+
+.star.glow {
+  opacity: 1;
+  transform: scale(2);
+  box-shadow:
+    0 0 8px var(--ascent-gold),
+    0 0 16px var(--ascent-gold),
+    0 0 24px rgba(197, 160, 89, 0.6);
+}
+
+/* -----------------------------------------------------------------
+   8. ABOUT SECTION
+   ----------------------------------------------------------------- */
+.about {
+  background: var(--pillar-white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.about-card {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: all var(--transition-smooth);
+  border: 1px solid rgba(197, 160, 89, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--gradient-vertical);
+  transition: height var(--transition-smooth);
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.about-card:hover::before {
+  height: 100%;
+}
+
+.about-card h3 {
+  color: var(--deep-root-teal);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--ascent-gold), #d4b36a);
+  color: white;
+  border-radius: 12px;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.about-card p {
+  color: var(--earth-slate);
+  line-height: 1.8;
+}
+
+/* -----------------------------------------------------------------
+   9. VISION & MISSION SECTION
+   ----------------------------------------------------------------- */
+.vision-mission {
+  background: var(--deep-root-teal);
+  color: var(--pillar-white);
+}
+
+.vm-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.vm-block {
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  transition: all var(--transition-smooth);
+}
+
+.vm-block:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.02);
+}
+
+.vm-block h2 {
+  color: var(--ascent-gold);
+  margin-bottom: var(--spacing-md);
+}
+
+.vm-block p {
+  font-size: var(--font-size-md);
+  line-height: 1.9;
+  color: rgba(244, 241, 234, 0.95);
+}
+
+/* -----------------------------------------------------------------
+   10. VALUES SECTION
+   ----------------------------------------------------------------- */
+.values {
+  background: var(--pillar-white);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.value-card {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.value-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-vertical);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.value-card:hover {
+  transform: translateY(-12px) rotateX(5deg);
+  box-shadow: var(--shadow-strong);
+}
+
+.value-card:hover::after {
+  transform: scaleX(1);
+}
+
+.value-card h3 {
+  color: var(--deep-root-teal);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.value-card p {
+  color: var(--earth-slate);
+  line-height: 1.8;
+}
+
+/* -----------------------------------------------------------------
+   11. FOOTER
+   ----------------------------------------------------------------- */
+.footer {
+  background: var(--deep-root-teal);
+  color: var(--pillar-white);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  text-align: center;
+}
+
+.footer-logo {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.9;
+}
+
+.footer-tagline {
+  color: var(--ascent-gold);
+  font-size: var(--font-size-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  opacity: 0.8;
+}
+
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(to right,
+      transparent 0%,
+      var(--ascent-gold) 50%,
+      transparent 100%);
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.copyright {
+  font-size: var(--font-size-xs);
+  opacity: 0.7;
+}
+
+/* -----------------------------------------------------------------
+   12. ECOSYSTEM / BRANCHES SECTION (CANVAS)
+   ----------------------------------------------------------------- */
+.ecosystem.section {
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.canvas-container {
+  width: 100%;
+  position: relative;
+  background: radial-gradient(circle at center, rgba(13, 44, 46, 0.03) 0%, transparent 70%);
+  border-radius: 20px;
+}
+
+#forest-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  /* Will be managed by JS for interactables */
+  display: block;
+}
+
+.forest-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(13, 44, 46, 0.95);
+  color: var(--pillar-white);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -100%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+  max-width: 250px;
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  border: 1px solid var(--ascent-gold);
+}
+
+.forest-tooltip.active {
+  opacity: 1;
+  transform: translate(-50%, -120%);
+}
+
+.forest-tooltip h4 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 0.25rem;
+  color: var(--ascent-gold);
+}
+
+.forest-tooltip .tagline {
+  font-style: italic;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.forest-tooltip p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--pillar-white);
+}
+
+/* -----------------------------------------------------------------
+   13. ANIMATIONS
+   ----------------------------------------------------------------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all var(--transition-slow);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all var(--transition-slow);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all var(--transition-slow);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* -----------------------------------------------------------------
+   13. RESPONSIVE DESIGN
+   ----------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-3xl: 3rem;
+    --font-size-2xl: 2.5rem;
+    --spacing-xl: 4rem;
+  }
+
+  .vm-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-3xl: 2.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-xl: 1.75rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 3rem;
+  }
+
+  .brand-logo {
+    max-width: 280px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .value-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-3xl: 2rem;
+    --font-size-2xl: 1.75rem;
+    --spacing-md: 1rem;
+  }
+
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .brand-logo {
+    max-width: 220px;
+  }
+}
+
+/* -----------------------------------------------------------------
+   14. UTILITY CLASSES
+   ----------------------------------------------------------------- */
+.text-center {
+  text-align: center;
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
