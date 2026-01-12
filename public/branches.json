@@ -1,0 +1,35 @@
+{
+    "children": [
+        {
+            "id": "optiyan",
+            "name": "Optiyan",
+            "tagline": "Refining the rhythm",
+            "description": "Optiyan is a Tech firm that focuses on operational harmony rather than just software sales. Positioning themselves as \"architects of efficiency\" they specialize in streamlining workflows and refining business processes to create a more seamless, productive workday.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Optiyan/logo.png",
+            "website": "https://optiyan.com"
+        },
+        {
+            "id": "zataarak",
+            "name": "Zataarak",
+            "description": "a streamlined, form-based UI for Docker Swarm management that transforms the complexity of container orchestration into an intuitive, accessible experience",
+            "tagline": "Essence of Orchestration",
+            "logo": "https://cdn.rrntwrk.com/Logos/Zataarak/favicon.png",
+            "website": "https://zataarak.com",
+            "parent": "optiyan"
+        },
+        {
+            "id": "hh",
+            "name": "Howling Hood",
+            "description": "Howling Hood is a gaming channel dedicated to moving beyond the screen and building a real community. Rather than just focusing on high scores or highlights, the mission is to cultivate genuine connections and foster a welcoming space for friendly, authentic dialogue with the audience. For Howling Hood, every stream and post is an opportunity to turn viewers into friends and a fanbase into a family.",
+            "tagline": "Keep howling, be good.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Howling%20Hood/logo.png"
+        },
+        {
+            "id": "ss",
+            "name": "Simply Saee",
+            "description": "A female-led gaming channel focused on warmth, relaxation, and community. If you’re looking for a place to decompress and connect with kind-hearted people, head here and you’ve found your home.",
+            "tagline": "Simply Saee vibes.",
+            "logo": "https://cdn.rrntwrk.com/Logos/Simply%20Saee/logo.png"
+        }
+    ]
+}
