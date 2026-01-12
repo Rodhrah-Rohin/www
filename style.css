@@ -225,12 +225,36 @@ h3 {
 .logo-container {
   margin-bottom: var(--spacing-lg);
   animation: fade-slide-down 1s ease-out;
+  width: 180px;
+  height: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: white;
 }
 
 .brand-logo {
-  max-width: 400px;
-  height: auto;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Zoom in 1.4x to hide the decorative outer rings of square.png */
+  transform: scale(1.4);
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .hero h1 {
@@ -670,6 +694,10 @@ h3 {
     --spacing-xl: 4rem;
   }
 
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
   .vm-container {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
@@ -682,19 +710,27 @@ h3 {
 
 @media (max-width: 768px) {
   :root {
-    --font-size-3xl: 2.5rem;
-    --font-size-2xl: 2rem;
-    --font-size-xl: 1.75rem;
-    --spacing-lg: 3rem;
+    --font-size-3xl: 2.25rem;
+    --font-size-2xl: 1.85rem;
+    --font-size-xl: 1.5rem;
+    --font-size-lg: 1.25rem;
+    --spacing-lg: 2.5rem;
     --spacing-xl: 3rem;
   }
 
-  .brand-logo {
-    max-width: 280px;
+
+
+  .hero h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .tagline {
+    font-size: 1.125rem;
   }
 
   .about-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
   .values-grid {
@@ -702,23 +738,44 @@ h3 {
   }
 
   .value-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
   }
 }
 
 @media (max-width: 480px) {
   :root {
-    --font-size-3xl: 2rem;
-    --font-size-2xl: 1.75rem;
+    --font-size-3xl: 1.85rem;
+    --font-size-2xl: 1.6rem;
     --spacing-md: 1rem;
+    --spacing-lg: 2rem;
   }
 
-  .section {
-    padding: var(--spacing-lg) 0;
+  .hero-content {
+    padding: var(--spacing-xl) 0;
   }
 
-  .brand-logo {
-    max-width: 220px;
+
+
+  .hero-description {
+    font-size: 0.95rem;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .about-card {
+    padding: var(--spacing-md);
+  }
+
+  .vm-block {
+    padding: var(--spacing-md);
+  }
+
+  .value-card {
+    padding: var(--spacing-md);
+  }
+
+  .canvas-container {
+    height: 450px !important;
+    /* Shorter on small mobile */
   }
 }
 

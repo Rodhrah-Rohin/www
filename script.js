@@ -277,8 +277,9 @@ class ForestVisualizer {
       cardWidth: 200,
       cardHeight: 100,
       rootSize: 80, // Radius for root circle
-      levelHeight: 160, // Vertical spacing (reduced slightly for upward fit)
-      siblingGap: 40,   // Horizontal spacing
+      levelHeight: 160,
+      siblingGap: 40,
+      scale: 1, // Global scale factor for mobile
       colors: {
         teal: '#0D2C2E',
         gold: '#C5A059',
@@ -330,14 +331,41 @@ class ForestVisualizer {
     const container = this.canvas.parentElement;
     const dpr = window.devicePixelRatio || 1;
 
-    this.canvas.width = container.clientWidth * dpr;
+    // Ensure container takes full width but doesn't overflow
+    const viewportWidth = window.innerWidth;
+    const padding = 40; // Total horizontal padding from .section-content
+    const targetWidth = Math.min(container.clientWidth, viewportWidth - padding);
+
+    this.canvas.width = targetWidth * dpr;
     this.canvas.height = container.clientHeight * dpr;
-    this.canvas.style.width = container.clientWidth + 'px';
+    this.canvas.style.width = targetWidth + 'px';
     this.canvas.style.height = container.clientHeight + 'px';
 
     this.ctx.scale(dpr, dpr);
-    this.width = container.clientWidth;
+    this.width = targetWidth;
     this.height = container.clientHeight;
+
+    // Adaptive Config for Mobile
+    if (this.width < 768) {
+      this.config.cardWidth = 140;
+      this.config.siblingGap = 20;
+      this.config.rootSize = 60;
+      this.config.levelHeight = 130;
+
+      // Calculate projected width for 3 children
+      const projectedWidth = (this.config.cardWidth * 3) + (this.config.siblingGap * 2);
+      if (projectedWidth > this.width - 20) {
+        this.config.scale = (this.width - 20) / projectedWidth;
+      } else {
+        this.config.scale = 1;
+      }
+    } else {
+      this.config.cardWidth = 200;
+      this.config.siblingGap = 40;
+      this.config.rootSize = 80;
+      this.config.levelHeight = 160;
+      this.config.scale = 1;
+    }
 
     if (this.isLoaded) this.calculateLayout();
   }
@@ -430,16 +458,17 @@ class ForestVisualizer {
     this.rootNode.children.forEach(child => {
       child.hasLogo = !!this.images[child.id];
       if (child.hasLogo) {
-        child.width = 100; // Square for circle
-        child.height = 100;
+        // Logo nodes are square based on cardWidth proportions or fixed smaller size on mobile
+        const size = this.width < 768 ? 70 : 100;
+        child.width = size;
+        child.height = size;
       } else {
         child.width = this.config.cardWidth;
-        child.height = 70; // Compact height for text-only
+        child.height = this.width < 768 ? 50 : 70; // Compact height for text-only
       }
     });
 
     // Recalculate total width based on dynamic widths
-    let currentX = 0;
     const gap = this.config.siblingGap;
     const totalWidth = this.rootNode.children.reduce((acc, child) => acc + child.width, 0) + (level1Count - 1) * gap;
     let startX = centerX - (totalWidth / 2);
@@ -457,11 +486,12 @@ class ForestVisualizer {
           grandChild.hasLogo = !!this.images[grandChild.id];
 
           if (grandChild.hasLogo) {
-            grandChild.width = 90;
-            grandChild.height = 90;
+            const size = this.width < 768 ? 60 : 90;
+            grandChild.width = size;
+            grandChild.height = size;
           } else {
             grandChild.width = this.config.cardWidth * 0.9;
-            grandChild.height = 60;
+            grandChild.height = this.width < 768 ? 45 : 60;
           }
 
           grandChild.x = child.x;
@@ -473,8 +503,9 @@ class ForestVisualizer {
 
   handleMouseMove(e) {
     const rect = this.canvas.getBoundingClientRect();
-    this.mouse.x = e.clientX - rect.left;
-    this.mouse.y = e.clientY - rect.top;
+    const scale = this.config.scale || 1;
+    this.mouse.x = (e.clientX - rect.left) / scale;
+    this.mouse.y = (e.clientY - rect.top) / scale;
 
     let found = null;
     for (let node of this.nodes) {
@@ -590,10 +621,14 @@ class ForestVisualizer {
         this.ctx.fillStyle = '#FFFFFF';
         this.ctx.fill();
 
-        // Zoom in to crop out the built-in gold/teal ring border of the image
-        const displaySize = this.config.rootSize * 2.5;
+        // Zoom in FURTHER to definitely crop out any built-in ring border
+        const displaySize = this.config.rootSize * 2.8;
         this.ctx.drawImage(logo, -displaySize / 2, -displaySize / 2, displaySize, displaySize);
         this.ctx.restore();
+
+        // Match shadow to branches for consistency
+        this.ctx.shadowBlur = 5;
+        this.ctx.shadowOffsetY = 2;
 
         // BORDER REMOVED AS REQUESTED
 
@@ -682,7 +717,12 @@ class ForestVisualizer {
 
   loop() {
     // Clear
-    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.clearRect(0, 0, this.width / this.config.scale, this.height / this.config.scale);
+
+    this.ctx.save();
+    if (this.config.scale !== 1) {
+      this.ctx.scale(this.config.scale, this.config.scale);
+    }
 
     // Draw Connectors first (behind nodes)
     this.nodes.forEach(node => {
@@ -693,6 +733,8 @@ class ForestVisualizer {
 
     // Draw Nodes
     this.nodes.forEach(node => this.drawNode(node));
+
+    this.ctx.restore();
 
     requestAnimationFrame(this.loop);
   }
